@@ -48,6 +48,7 @@ target_link_libraries(movements_extractor
   ${ACE_LIBRARY}
   ${BZIP2_LIBRARIES}
   ${ZLIB_LIBRARIES}
+  ${CMAKE_THREAD_LIBS_INIT}
   Recast
   Detour
   collision
