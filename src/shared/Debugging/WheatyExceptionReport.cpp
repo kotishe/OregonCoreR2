@@ -1292,16 +1292,16 @@ size_t bufferSize)
         case btChar:
             {
                 if (strlen((char*)pAddress) > bufferSize - 6)
-                    pszCurrBuffer += sprintf(pszCurrBuffer, "\"%.*s...\"", bufferSize - 6, (char*)pAddress);
+                    pszCurrBuffer += sprintf(pszCurrBuffer, "\"%.*s...\"", (DWORD)bufferSize - 6, (char*)pAddress);
                 else
-                    pszCurrBuffer += sprintf(pszCurrBuffer, "\"%s\"", (char*)pAddress);
+                    pszCurrBuffer += sprintf(pszCurrBuffer, "\"%.*s\"", (DWORD)length, (char*)pAddress);
                 break;
             }
         case btStdString:
             {
                 std::string* value = static_cast<std::string*>(pAddress);
                 if (value->length() > bufferSize - 6)
-                    pszCurrBuffer += sprintf(pszCurrBuffer, "\"%.*s...\"", bufferSize - 6, value->c_str());
+                    pszCurrBuffer += sprintf(pszCurrBuffer, "\"%.*s...\"", (DWORD)bufferSize - 6, value->c_str());
                 else
                     pszCurrBuffer += sprintf(pszCurrBuffer, "\"%s\"", value->c_str());
                 break;
@@ -1333,9 +1333,9 @@ size_t bufferSize)
             else
             {
                 #if _WIN64
-                pszCurrBuffer += sprintf(pszCurrBuffer, "0x%I64X", (DWORD64*)pAddress);
+                pszCurrBuffer += sprintf(pszCurrBuffer, "0x%I64X", (DWORD64)pAddress);
                 #else
-                pszCurrBuffer += sprintf(pszCurrBuffer, "0x%X", (PDWORD)pAddress);
+                pszCurrBuffer += sprintf(pszCurrBuffer, "0x%X", (DWORD)pAddress);
                 #endif
             }
             break;
@@ -1344,9 +1344,9 @@ size_t bufferSize)
     __except (EXCEPTION_EXECUTE_HANDLER)
     {
         #if _WIN64
-        pszCurrBuffer += sprintf(pszCurrBuffer, "0x%I64X <Unable to read memory>", (DWORD64*)pAddress);
+        pszCurrBuffer += sprintf(pszCurrBuffer, "0x%I64X <Unable to read memory>", (DWORD64)pAddress);
         #else
-        pszCurrBuffer += sprintf(pszCurrBuffer, "0x%X <Unable to read memory>", (PDWORD)pAddress);
+        pszCurrBuffer += sprintf(pszCurrBuffer, "0x%X <Unable to read memory>", (DWORD)pAddress);
         #endif
     }
 }
