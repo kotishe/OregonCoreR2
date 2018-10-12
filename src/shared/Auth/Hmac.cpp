@@ -59,7 +59,7 @@ void HmacHash::UpdateBigNumber(BigNumber* bn)
     UpdateData(bn->AsByteArray(), bn->GetNumBytes());
 }
 
-void HmacHash::UpdateData(uint8 const* data, int length)
+void HmacHash::UpdateData(const uint8* data, int length)
 {
     HMAC_Update(m_ctx, data, length);
 }
