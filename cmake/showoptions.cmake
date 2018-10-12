@@ -37,7 +37,7 @@ endif()
 
 # output generic information about the core and buildtype chosen
 message("")
-ShowOption("OregonCore revision    :" "${rev_id_str} (${rev_hash_str})")
+ShowOption("OregonCoreR2 revision    :" "${rev_id_str} (${rev_hash_str})")
 if( UNIX )
   ShowOption("Build binaries in      :" "${CMAKE_BUILD_TYPE} mode")
 endif()

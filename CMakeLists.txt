@@ -10,7 +10,7 @@
 
 # Set projectname (must be done AFTER setting configurationtypes)
 
-project(OregonCore)
+project(OregonCoreR2)
 
 # We require CMake >= 2.8
 cmake_minimum_required(VERSION 2.8)

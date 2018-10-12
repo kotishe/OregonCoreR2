@@ -24,7 +24,7 @@
 #include "revision.h"
 
 
-#define _PACKAGENAME "OregonCore "
+#define _PACKAGENAME "OregonCoreR2 "
 #define _CODENAME "VELOCITY"
 
 #if OREGON_ENDIAN == OREGON_BIGENDIAN
