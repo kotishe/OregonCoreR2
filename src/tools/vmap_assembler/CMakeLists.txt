@@ -33,6 +33,7 @@ target_link_libraries(vmap_assembler
   collision
   g3dlib
   ${ZLIB_LIBRARIES}
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 if( UNIX )
