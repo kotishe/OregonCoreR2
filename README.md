@@ -10,7 +10,12 @@ Build Status
 | Compiler      | Platform    | Branch | Status                  |
 |:--------------|:------------|:------:|:-----------------------:|
 | clang         | Linux x64   | master | [![Build Status][1]][7] |
-| MSVC++ 2015   | Windows x64 | master | [![build Status][2]][8] |
+| MSVC++ 2017   | Windows x64 | master | [![build Status][2]][8] |
+
+## Requirements
++ Platform: Linux, Windows or Mac
++ Processor with SSE2 support
++ OpenSSL = 1.1.0
 
 [1]: https://travis-ci.org/OregonCore/OregonCore.svg?branch=master
 [2]: https://ci.appveyor.com/api/projects/status/bxn9cq9miqxn33gr/branch/master
