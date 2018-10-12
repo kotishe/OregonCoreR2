@@ -20,7 +20,7 @@ namespace G3D {
    Abstraction of memory management.
    Default implementation uses G3D::System::malloc and is threadsafe.
 
-   \sa CRTMemoryManager, AlignedMemoryManager, AreaMemoryManager */
+   \sa LargePoolMemoryManager, CRTMemoryManager, AlignedMemoryManager, AreaMemoryManager */
 class MemoryManager : public ReferenceCountedObject {
 protected:
 
@@ -28,7 +28,7 @@ protected:
 
 public:
 
-    typedef ReferenceCountedPointer<class MemoryManager> Ref;
+    typedef shared_ptr<class MemoryManager> Ref;
 
     /** Return a pointer to \a s bytes of memory that are unused by
         the rest of the program.  The contents of the memory are
@@ -59,29 +59,30 @@ protected:
 
 public:
 
-    typedef ReferenceCountedPointer<class AlignedMemoryManager> Ref;
+    typedef shared_ptr<class AlignedMemoryManager> Ref;
 
     
-    void* alloc(size_t s) override;
+    virtual void* alloc(size_t s);
 
-    void free(void* ptr) override;
+    virtual void free(void* ptr);
 
-    bool isThreadsafe() const override;
+    virtual bool isThreadsafe() const;
 
     static AlignedMemoryManager::Ref create();
 };
 
 
-/** MemoryManager implemented using the C runtime. */
+/** A MemoryManager implemented using the C runtime. Not recommended
+    for general use; this is largely for debugging. */
 class CRTMemoryManager : public MemoryManager {
 protected:
     CRTMemoryManager();
 
 public:
-    typedef ReferenceCountedPointer<class MemoryManager> Ref;
-    void* alloc(size_t s) override;
-    void free(void* ptr) override;
-    bool isThreadsafe() const override;
+    typedef shared_ptr<class MemoryManager> Ref;
+    virtual void* alloc(size_t s);
+    virtual void free(void* ptr);
+    virtual bool isThreadsafe() const;
 
     /** There's only one instance of this memory manager; it is 
         cached after the first creation. */
