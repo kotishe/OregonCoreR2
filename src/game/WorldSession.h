@@ -415,6 +415,7 @@ class WorldSession
         void HandleRaidReadyCheckFinishOpcode(WorldPacket& recv_data);
         void HandleRaidConvertOpcode(WorldPacket& recv_data);
         void HandleGroupChangeSubGroupOpcode(WorldPacket& recv_data);
+        void HandleGroupSwapSubGroupOpcode(WorldPacket& recv_data);
         void HandleGroupAssistantOpcode(WorldPacket& recv_data);
         void HandleGroupPromoteOpcode(WorldPacket& recv_data);
 
