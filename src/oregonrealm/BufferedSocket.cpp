@@ -16,6 +16,7 @@
  */
 
 #include "BufferedSocket.h"
+#include "IpList.h"
 
 #include <ace/OS_NS_string.h>
 #include <ace/INET_Addr.h>
@@ -44,6 +45,33 @@ BufferedSocket::BufferedSocket(void):
 
     if (peer().get_remote_addr(addr) == -1)
         return -1;
+
+    // <anti DDoS>
+    uint32 uintAddr = addr.get_ip_address();
+    if (!uintAddr)
+        return -1;
+
+    time_t currTime = time(NULL);
+
+    if (!sIpListStorage.empty())
+    {
+        // first del expired records
+        for (TIpList::iterator itr = sIpListStorage.begin(); itr != sIpListStorage.end();)
+        {
+            if (itr->second < currTime)
+                sIpListStorage.erase(itr++);
+            else
+                ++itr;
+        }
+         // then search current connected ip
+        TIpList::const_iterator itr = sIpListStorage.find(uintAddr);
+        if (itr != sIpListStorage.end())
+            return -1;
+    }
+
+    // add new ip addr into ip list
+    sIpListStorage[uintAddr] = currTime;
+    // </anti DDoS>
 
     char address[1024];
 
