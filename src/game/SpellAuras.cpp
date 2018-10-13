@@ -4975,8 +4975,9 @@ void Aura::HandleModHitChance(bool apply, bool /*Real*/)
     }
     else
     {
-        m_target->m_modMeleeHitChance += apply ? GetModifierValue() : -GetModifierValue();
-        m_target->m_modRangedHitChance += apply ? GetModifierValue() : -GetModifierValue();
+        float value = m_target->GetTotalAuraModifier(SPELL_AURA_MOD_HIT_CHANCE);
+        m_target->m_modMeleeHitChance = value;
+        m_target->m_modRangedHitChance = value;
     }
 }
 
