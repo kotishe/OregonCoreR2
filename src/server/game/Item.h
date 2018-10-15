@@ -152,7 +152,7 @@ enum EnchantmentSlot
     SOCK_ENCHANTMENT_SLOT_2         = 3,
     SOCK_ENCHANTMENT_SLOT_3         = 4,
     BONUS_ENCHANTMENT_SLOT          = 5,
-    MAX_INSPECTED_ENCHANTMENT_SLOT = 6,
+    MAX_INSPECTED_ENCHANTMENT_SLOT  = 6,
 
     PROP_ENCHANTMENT_SLOT_0         = 6,                    // used with RandomSuffix
     PROP_ENCHANTMENT_SLOT_1         = 7,                    // used with RandomSuffix

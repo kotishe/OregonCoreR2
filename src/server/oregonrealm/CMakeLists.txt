@@ -13,21 +13,21 @@ file(GLOB sources_localdir *.cpp *.h)
 set(oregon-realm_SRCS
   ${oregon-realm_SRCS}
   ${sources_localdir}
-  ${sources_Debugging}
 )
 
 if( WIN32 )
   set(oregon-realm_SRCS
     ${oregon-realm_SRCS}
+    ${sources_Debugging}
     OregonRealm.rc
   )
 endif()
 
 include_directories(
   ${CMAKE_BINARY_DIR}
-  ${CMAKE_SOURCE_DIR}/src/shared
-  ${CMAKE_SOURCE_DIR}/src/shared/Database
-  ${CMAKE_SOURCE_DIR}/src/framework
+  ${CMAKE_SOURCE_DIR}/src/server/shared
+  ${CMAKE_SOURCE_DIR}/src/server/shared/Database
+  ${CMAKE_SOURCE_DIR}/src/server/framework
   ${ACE_INCLUDE_DIR}
   ${MYSQL_INCLUDE_DIR}
   ${OPENSSL_INCLUDE_DIR}
