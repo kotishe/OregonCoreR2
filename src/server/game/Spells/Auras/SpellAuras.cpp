@@ -3906,23 +3906,29 @@ void Aura::HandleModMechanicImmunity(bool apply, bool /*Real*/)
         }
     }
 
-    // The Beast Within and Bestial Wrath - immunity
-    if (GetId() == 19574 || GetId() == 34471)
+    switch (GetId())
     {
-        if (apply)
-        {
-            m_target->CastSpell(m_target, 24395, true);
-            m_target->CastSpell(m_target, 24396, true);
-            m_target->CastSpell(m_target, 24397, true);
-            m_target->CastSpell(m_target, 26592, true);
-        }
-        else
-        {
-            m_target->RemoveAurasDueToSpell(24395);
-            m_target->RemoveAurasDueToSpell(24396);
-            m_target->RemoveAurasDueToSpell(24397);
-            m_target->RemoveAurasDueToSpell(26592);
-        }
+		case 19574:
+		case 34471:
+            if (apply)
+            {
+                m_target->CastSpell(m_target, 24395, true);
+                m_target->CastSpell(m_target, 24396, true);
+                m_target->CastSpell(m_target, 24397, true);
+                m_target->CastSpell(m_target, 26592, true);
+            }
+            else
+            {
+                m_target->RemoveAurasDueToSpell(24395);
+                m_target->RemoveAurasDueToSpell(24396);
+                m_target->RemoveAurasDueToSpell(24397);
+                m_target->RemoveAurasDueToSpell(26592);
+            }
+	        break;
+        case 18461: // Vanish Purge
+            if (m_effIndex == EFFECT_0)
+                m_target->RemoveSpellsCausingAura(SPELL_AURA_MOD_STALKED);
+            break;
     }
 }
 
