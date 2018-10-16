@@ -34,10 +34,15 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/dep/recastnavigation/Recast
   ${CMAKE_SOURCE_DIR}/dep/recastnavigation/Detour
   ${CMAKE_SOURCE_DIR}/src/server/shared
+  ${CMAKE_SOURCE_DIR}/src/server/shared/Threading
+  ${CMAKE_SOURCE_DIR}/src/server/shared/Utilities
   ${CMAKE_SOURCE_DIR}/src/server/shared/Dynamic
+  ${CMAKE_SOURCE_DIR}/src/server/game/Conditions
+  ${CMAKE_SOURCE_DIR}/src/server/game/Movement/Spline
   ${CMAKE_SOURCE_DIR}/src/server/collision
-  ${CMAKE_SOURCE_DIR}/src/server/framework
-  ${CMAKE_SOURCE_DIR}/src/server/game
+  ${CMAKE_SOURCE_DIR}/src/server/collision/Management
+  ${CMAKE_SOURCE_DIR}/src/server/collision/Maps
+  ${CMAKE_SOURCE_DIR}/src/server/collision/Models
 )
 
 add_executable(movements_extractor

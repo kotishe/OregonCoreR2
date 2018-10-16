@@ -28,7 +28,7 @@
 #include <errno.h>
 #include <algorithm>
 
-#include "Platform/Define.h"
+#include "Define.h"
 
 #ifndef WIN32
 #include <stddef.h>
