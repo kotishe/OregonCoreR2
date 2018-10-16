@@ -69,8 +69,10 @@ add_executable(authserver
 
 add_dependencies(authserver revision.h)
 
-if( NOT WIN32 )
-  add_definitions(-D_OREGON_REALM_CONFIG='"${CONF_DIR}/oregonrealm.conf"')
+if ( NOT WIN32 )
+	set_target_properties(authserver PROPERTIES
+		COMPILE_DEFINITIONS _OREGON_REALM_CONFIG="${CONF_DIR}/oregonrealm.conf"
+)
 endif()
 
 if( UNIX )
