@@ -12,7 +12,8 @@ file(GLOB_RECURSE sources *.cpp *.h)
 
 if( UNIX )
   include_directories (
-    ${CMAKE_SOURCE_DIR}/src/shared
+    ${CMAKE_SOURCE_DIR}/src/server/shared
+    ${CMAKE_SOURCE_DIR}/src/server/shared/Dynamic
     ${CMAKE_SOURCE_DIR}/dep/libmpq
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/loadlib
@@ -20,7 +21,8 @@ if( UNIX )
   )
 elseif( WIN32 )
   include_directories (
-    ${CMAKE_SOURCE_DIR}/src/shared
+    ${CMAKE_SOURCE_DIR}/src/server/shared
+    ${CMAKE_SOURCE_DIR}/src/server/shared/Dynamic
     ${CMAKE_SOURCE_DIR}/dep/libmpq
     ${CMAKE_SOURCE_DIR}/dep/libmpq/win
     ${CMAKE_CURRENT_SOURCE_DIR}

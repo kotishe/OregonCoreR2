@@ -20,7 +20,7 @@
 #ifndef OREGON_SYSTEMCONFIG_H
 #define OREGON_SYSTEMCONFIG_H
 
-#include "Platform/Define.h"
+#include "Define.h"
 #include "revision.h"
 
 

@@ -16,17 +16,17 @@
  */
 
 #include "DatabaseEnv.h"
-#include "Config/Config.h"
+#include "Configuration/Config.h"
 
 #include "Common.h"
-#include "../../game/UpdateFields.h"
+#include "UpdateFields.h"
 
-#include "Utilities/Util.h"
-#include "Platform/Define.h"
-#include "Platform/CompilerDefs.h"
+#include "Util.h"
+#include "Define.h"
+#include "CompilerDefs.h"
 #include "Threading.h"
-#include "Database/SqlDelayThread.h"
-#include "Database/SqlOperations.h"
+#include "SqlDelayThread.h"
+#include "SqlOperations.h"
 #include "Timer.h"
 
 #include <ctime>
