@@ -447,7 +447,11 @@ bool Creature::UpdateEntry(uint32 Entry, uint32 team, const CreatureData* data)
     if (FactionTemplateEntry const* factionTemplate = sFactionTemplateStore.LookupEntry(cInfo->faction))
     {
         if (factionTemplate->factionFlags & FACTION_TEMPLATE_FLAG_PVP || IsPvP()) // PvP state may be set in UnitFlags.. Prevent overwrite
-            SetPvP(true);
+        {
+            const AreaTableEntry* zone = GetAreaEntryByAreaID(GetAreaId());
+            const bool sanctuary = (zone && (zone->flags & AREA_FLAG_SANCTUARY));
+            SetPvP(!sanctuary);
+        }
         else
             SetPvP(false);
     }
