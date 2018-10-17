@@ -43,6 +43,7 @@ set(shared_STAT_SRCS
   ${sources_Database}
   ${sources_DataStores}
   ${sources_Dynamic}
+  ${sources_Debugging}
   ${sources_Logging}
   ${sources_Packets}
   ${sources_Threading}
