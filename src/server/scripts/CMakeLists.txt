@@ -37,6 +37,13 @@ set(scripts_STAT_SRCS
   ../game/AI/ScriptedAI/ScriptedSimpleAI.cpp
 )
 
+source_group(ScriptedAI FILES ${sources_ScriptedAI})
+  
+ set(scripts_STAT_SRCS
+  ${scripts_STAT_SRCS}
+  ${sources_ScriptedAI}
+)
+ 
 if(SCRIPTS)
   set(scripts_STAT_SRCS
     ${scripts_STAT_SRCS}
