@@ -94,6 +94,7 @@ if( WIN32 )
     ${MYSQL_LIBRARY}
     ${OPENSSL_LIBRARIES}
     ${OPENSSL_EXTRA_LIBRARIES}
+	${CMAKE_THREAD_LIBS_INIT}
   )
 else()
   target_link_libraries(
@@ -101,6 +102,7 @@ else()
     shared
     ${MYSQL_LIBRARY}
     ${OPENSSL_LIBRARIES}
+	${CMAKE_THREAD_LIBS_INIT}
     ${OSX_LIBS}
   )
 endif()

@@ -174,6 +174,7 @@ target_link_libraries(worldserver
   ${OPENSSL_EXTRA_LIBRARIES}
   ${ZLIB_LIBRARIES}
   ${CURSES_LIBRARY}
+  ${CMAKE_THREAD_LIBS_INIT}
   ${OSX_LIBS}
 )
 
