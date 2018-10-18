@@ -68,10 +68,13 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/Configuration
   ${CMAKE_CURRENT_SOURCE_DIR}/Cryptography
+  ${CMAKE_CURRENT_SOURCE_DIR}/Cryptography/Authentication
   ${CMAKE_CURRENT_SOURCE_DIR}/Database
   ${CMAKE_CURRENT_SOURCE_DIR}/DataStores
   ${CMAKE_CURRENT_SOURCE_DIR}/Debugging
   ${CMAKE_CURRENT_SOURCE_DIR}/Dynamic
+  ${CMAKE_CURRENT_SOURCE_DIR}/Dynamic/CountedReference
+  ${CMAKE_CURRENT_SOURCE_DIR}/Dynamic/LinkedReference
   ${CMAKE_CURRENT_SOURCE_DIR}/Logging
   ${CMAKE_CURRENT_SOURCE_DIR}/Packets
   ${CMAKE_CURRENT_SOURCE_DIR}/Threading

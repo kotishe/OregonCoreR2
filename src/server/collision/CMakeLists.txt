@@ -40,10 +40,10 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/src/server/shared/Configuration
   ${CMAKE_SOURCE_DIR}/src/server/shared/Cryptography
   ${CMAKE_SOURCE_DIR}/src/server/shared/Cryptography/Authentication
-  ${CMAKE_SOURCE_DIR}/src/server/shared/Debugging
   ${CMAKE_SOURCE_DIR}/src/server/shared/Database
   ${CMAKE_SOURCE_DIR}/src/server/shared/Debugging
   ${CMAKE_SOURCE_DIR}/src/server/shared/Dynamic
+  ${CMAKE_SOURCE_DIR}/src/server/shared/Dynamic/CountedReference
   ${CMAKE_SOURCE_DIR}/src/server/shared/Dynamic/LinkedReference
   ${CMAKE_SOURCE_DIR}/src/server/shared/Logging
   ${CMAKE_SOURCE_DIR}/src/server/shared/Threading
