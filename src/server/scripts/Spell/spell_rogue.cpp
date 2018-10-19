@@ -23,14 +23,44 @@
 
 #include "ScriptPCH.h"
 
+enum RogueSpells
+{
+    ROGUE_SPELL_CHEATING_DEATH                   = 45182
+};
+
+class spell_rog_cheat_death_SpellScript : public SpellScript
+{
+    bool Validate(SpellEntry const * spellEntry)
+    {
+        if (!sSpellStore.LookupEntry(ROGUE_SPELL_CHEATING_DEATH))
+            return false;
+        return true;
+    }
+
+    void HandleDummy(SpellEffIndex effIndex)
+    {
+        Unit *caster = GetCaster();
+        caster->CastSpell(caster, ROGUE_SPELL_CHEATING_DEATH, true);
+    }
+
+    void Register()
+    {
+        // add dummy effect spell handler to Cheat Death
+        EffectHandlers += EffectHandlerFn(spell_rog_cheat_death_SpellScript::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
+SpellScript *GetSpellScript_spell_rog_cheat_death()
+{
+    return new spell_rog_cheat_death_SpellScript();
+}
+
 void AddSC_rogue_spell_scripts()
 {
-    //Script *newscript;
+    Script *newscript;
 
-    /*
     newscript = new Script;
-    newscript->Name = "spell_rog_";
-    newscript->GetSpellScript = &GetSpellScript_spell_rog_;
+    newscript->Name = "spell_rog_cheat_death";
+    newscript->GetSpellScript = &GetSpellScript_spell_rog_cheat_death;
     newscript->RegisterSelf();
-    */
 }

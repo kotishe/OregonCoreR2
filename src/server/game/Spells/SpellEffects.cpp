@@ -1833,11 +1833,6 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
     case SPELLFAMILY_ROGUE:
         switch (m_spellInfo->Id)
         {
-        case 31231:                                 // Cheat Death
-            {
-                m_caster->CastSpell(m_caster, 45182, true);
-                return;
-            }
         case 5938:                                  // Shiv
             {
                 if (m_caster->GetTypeId() != TYPEID_PLAYER)
