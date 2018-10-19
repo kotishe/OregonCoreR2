@@ -1634,33 +1634,6 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                 }
             }
         }
-    case SPELLFAMILY_MAGE:
-        switch (m_spellInfo->Id)
-        {
-        case 11958:                                 // Cold Snap
-            {
-                if (m_caster->GetTypeId() != TYPEID_PLAYER)
-                    return;
-
-                // immediately finishes the cooldown on Frost spells
-                const PlayerSpellMap& sp_list = m_caster->ToPlayer()->GetSpellMap();
-                for (PlayerSpellMap::const_iterator itr = sp_list.begin(); itr != sp_list.end(); ++itr)
-                {
-                    if (itr->second.state == PLAYERSPELL_REMOVED)
-                        continue;
-
-                    uint32 classspell = itr->first;
-                    SpellEntry const* spellInfo = sSpellStore.LookupEntry(classspell);
-
-                    if (spellInfo->SpellFamilyName == SPELLFAMILY_MAGE &&
-                        (GetSpellSchoolMask(spellInfo) & SPELL_SCHOOL_MASK_FROST) &&
-                        spellInfo->Id != 11958 && GetSpellRecoveryTime(spellInfo) > 0)
-                        m_caster->ToPlayer()->RemoveSpellCooldown(classspell, true);
-                }
-                return;
-            }
-        }
-        break;
     case SPELLFAMILY_WARRIOR:
         // Charge
         if (m_spellInfo->SpellFamilyFlags & 0x1 && m_spellInfo->SpellVisual == 867)

@@ -30,7 +30,8 @@ enum MageSpells
     SPELL_MAGE_SERPENT_FORM                      = 32817,
     SPELL_MAGE_DRAGONHAWK_FORM                   = 32818,
     SPELL_MAGE_WORGEN_FORM                       = 32819,
-    SPELL_MAGE_SHEEP_FORM                        = 32820
+    SPELL_MAGE_SHEEP_FORM                        = 32820,
+    SPELL_MAGE_COLD_SNAP                         = 11958
 };
 
 class spell_mage_polymorph_cast_visual_SpellScript : public SpellScript
@@ -81,6 +82,52 @@ SpellScript * GetSpellScript_spell_mage_polymorph_visual()
     return new spell_mage_polymorph_cast_visual_SpellScript();
 }
 
+class spell_mage_cold_snap_SpellScript : public SpellScript
+{
+    bool Validate(SpellEntry const * spellEntry)
+    {
+        return true;
+    };
+
+    void HandleDummy(SpellEffIndex effIndex)
+    {
+        Unit *m_caster = GetCaster();
+
+        if (!m_caster)
+            return;
+
+        if (m_caster->GetTypeId() != TYPEID_PLAYER)
+            return;
+
+        // immediately finishes the cooldown on Frost spells
+        const PlayerSpellMap& cm = m_caster->ToPlayer()->GetSpellMap();
+        for (PlayerSpellMap::const_iterator itr = cm.begin(); itr != cm.end();)
+        {
+            SpellEntry const *spellInfo = sSpellStore.LookupEntry(itr->first);
+
+            if (spellInfo->SpellFamilyName == SPELLFAMILY_MAGE &&
+                (GetSpellSchoolMask(spellInfo) & SPELL_SCHOOL_MASK_FROST) &&
+                spellInfo->Id != SPELL_MAGE_COLD_SNAP && GetSpellRecoveryTime(spellInfo) > 0)
+            {
+                m_caster->ToPlayer()->RemoveSpellCooldown((itr++)->first, true);
+            }
+            else
+                ++itr;
+        }
+    }
+
+    void Register()
+    {
+        // add dummy effect spell handler to Cold Snap
+        EffectHandlers += EffectHandlerFn(spell_mage_cold_snap_SpellScript::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+    }
+};
+
+SpellScript * GetSpellScript_spell_mage_cold_snap()
+{
+    return new spell_mage_cold_snap_SpellScript();
+}
+
 void AddSC_mage_spell_scripts()
 {
     Script *newscript;
@@ -89,4 +136,10 @@ void AddSC_mage_spell_scripts()
     newscript->Name = "spell_mage_polymorph_visual";
     newscript->GetSpellScript = &GetSpellScript_spell_mage_polymorph_visual;
     newscript->RegisterSelf();
+
+    newscript = new Script;
+    newscript->Name = "spell_mage_cold_snap";
+    newscript->GetSpellScript = &GetSpellScript_spell_mage_cold_snap;
+    newscript->RegisterSelf();
+
 }
