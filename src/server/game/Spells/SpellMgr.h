@@ -28,6 +28,7 @@
 #include "Database/SQLStorage.h"
 #include "SpellAuraDefines.h"
 #include "DisableMgr.h"
+#include "SpellScript.h"
 
 #include "UnorderedMap.h"
 #include "Management/VMapFactory.h"

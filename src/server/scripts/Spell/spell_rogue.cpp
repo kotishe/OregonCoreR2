@@ -1,5 +1,5 @@
 /*
- * This file is part of the OregonCore Project. See AUTHORS file for Copyright information
+ * Copyright (C) 2008-2018 TrinityCore <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -15,27 +15,22 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SC_PRECOMPILED_H
-#define SC_PRECOMPILED_H
+/*
+ * Scripts for spells with SPELLFAMILY_ROGUE and SPELLFAMILY_GENERIC spells used by rogue players.
+ * Ordered alphabetically using scriptname.
+ * Scriptnames of files in this file should be prefixed with "spell_rog_".
+ */
 
-#include "ScriptMgr.h"
-#include "Cell.h"
-#include "CellImpl.h"
-#include "GridNotifiers.h"
-#include "GridNotifiersImpl.h"
-#include "Unit.h"
-#include "GameObject.h"
-#include "SpellMgr.h"
-#include "ScriptedCreature.h"
-#include "ScriptedGossip.h"
-#include "ScriptedInstance.h"
-#include "CombatAI.h"
-#include "PassiveAI.h"
-#include "ObjectAccessor.h"
-#include "SpellScript.h"
+#include "ScriptPCH.h"
 
-#ifdef WIN32
-#include <windows.h>
-#endif
+void AddSC_rogue_spell_scripts()
+{
+    //Script *newscript;
 
-#endif
+    /*
+    newscript = new Script;
+    newscript->Name = "spell_rog_";
+    newscript->GetSpellScript = &GetSpellScript_spell_rog_;
+    newscript->RegisterSelf();
+    */
+}

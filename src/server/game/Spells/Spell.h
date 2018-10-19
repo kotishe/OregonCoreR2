@@ -28,6 +28,8 @@ class Unit;
 class Player;
 class GameObject;
 class Aura;
+struct SpellEntry;
+class SpellScript;
 
 enum SpellCastFlags
 {
@@ -250,6 +252,7 @@ class Spell
 {
         friend struct Oregon::SpellNotifierCreatureAndPlayer;
         friend void Unit::SetCurrentCastedSpell(Spell* pSpell);
+        friend class SpellScript;
     public:
 
         void EffectNULL(SpellEffIndex effIndex);
@@ -514,6 +517,10 @@ class Spell
         {
             return m_originalCaster;
         }
+        SpellEntry const * GetSpellInfo() const
+		{ 
+		    return m_spellInfo; 
+		}
         int32 GetPowerCost() const
         {
             return m_powerCost;
@@ -664,6 +671,9 @@ class Spell
         void SpellDamageSchoolDmg(SpellEffIndex effIndex);
         void SpellDamageWeaponDmg(SpellEffIndex effIndex);
         void SpellDamageHeal(SpellEffIndex effIndex);
+
+        void LoadScripts();
+        std::list<SpellScript *> m_loadedScripts;
 
         void GetSummonPosition(uint32 i, Position& pos, float radius = 0.0f);
         void SummonGuardian(uint32 i, uint32 entry, SummonPropertiesEntry const* properties);

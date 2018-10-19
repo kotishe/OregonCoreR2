@@ -348,6 +348,28 @@ bool IsIPAddress(char const* ipaddress);
 uint32 CreatePIDFile(const std::string& filename);
 
 
+template <typename T>
+class HookList
+{
+    typedef typename std::list<T>::iterator ListIterator;
+    private:
+        typename std::list<T> m_list;
+    public:
+        HookList<T> & operator+=(T t) 
+        {
+            m_list.push_back(t);
+            return *this;
+        }
+        ListIterator begin()
+        {
+            return m_list.begin();
+        }
+        ListIterator end()
+        {
+            return m_list.end();
+        }
+};
+
 /* Select a random element from a container. Note: make sure you explicitly empty check the container */
 template <class C> typename C::value_type const& SelectRandomContainerElement(C const& container)
 {

@@ -326,6 +326,8 @@ struct ScriptInfo
 
 typedef std::multimap<uint32, ScriptInfo> ScriptMap;
 typedef std::map<uint32, ScriptMap > ScriptMapMap;
+typedef std::multimap<uint32, uint32> SpellScriptsMap;
+typedef std::pair<SpellScriptsMap::iterator, SpellScriptsMap::iterator> SpellScriptsBounds;
 extern ScriptMapMap sQuestEndScripts;
 extern ScriptMapMap sQuestStartScripts;
 extern ScriptMapMap sSpellScripts;
@@ -734,6 +736,7 @@ class ObjectMgr
         AreaTrigger const* GetMapEntranceTrigger(uint32 Map) const;
 
         uint32 GetAreaTriggerScriptId(uint32 trigger_id);
+        SpellScriptsBounds GetSpellScriptsBounds(uint32 spell_id);
 
         ReputationOnKillEntry const* GetReputationOnKilEntry(uint32 id) const
         {
@@ -800,6 +803,8 @@ class ObjectMgr
         void LoadSpellScripts();
         void LoadGossipScripts();
         void LoadWaypointScripts();
+        void LoadSpellScriptNames();
+        void ValidateSpellScripts();
         void LoadReferredFriends();
 
         void LoadTransportEvents();
@@ -1218,6 +1223,8 @@ class ObjectMgr
         GameTeleMap         m_GameTeleMap;
 
         ScriptNameMap       m_scriptNames;
+
+        SpellScriptsMap     mSpellScripts;
 
         ReferFriendMap      m_referrerFriends;
         ReferFriendMap      m_referredFriends;

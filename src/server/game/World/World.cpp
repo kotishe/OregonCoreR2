@@ -1544,6 +1544,9 @@ void World::SetInitialWorldSettings()
     sConsole.SetLoadingLabel("Loading CreatureEventAI Scripts...");
     CreatureEAI_Mgr.LoadCreatureEventAI_Scripts();
 
+    sConsole.SetLoadingLabel("Loading spell script names...");
+    sObjectMgr.LoadSpellScriptNames();
+
     sConsole.SetLoadingLabel("Loading Creature Texts...");
     sCreatureTextMgr->LoadCreatureTexts();
 
@@ -1555,6 +1558,9 @@ void World::SetInitialWorldSettings()
 
     sConsole.SetLoadingLabel("Initializing Scripts...");
     sScriptMgr.ScriptsInit();
+
+    sConsole.SetLoadingLabel("Validating spell scripts...");
+    sObjectMgr.ValidateSpellScripts();
 
     // Initialize game time and timers
     sLog.outDebug("DEBUG:: Initialize game time and timers");

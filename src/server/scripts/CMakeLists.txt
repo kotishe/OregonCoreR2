@@ -21,6 +21,7 @@ file(GLOB_RECURSE scripts_examples Examples/*.cpp Examples/*.h)
 file(GLOB_RECURSE scripts_kalimdor Kalimdor/*.cpp Kalimdor/*.h)
 file(GLOB_RECURSE scripts_outland Outland/*.cpp Outland/*.h)
 file(GLOB_RECURSE scripts_world World/*.cpp World/*.h)
+file(GLOB_RECURSE scripts_spell Spell/*.cpp Spell/*.h)
 
 if( USE_SCRIPTPCH AND MSVC )
   set(scripts_STAT_SRCS
@@ -53,6 +54,7 @@ if(SCRIPTS)
     ${scripts_kalimdor}
     ${scripts_outland}
     ${scripts_world}
+    ${scripts_spell}
   )
 endif()
 

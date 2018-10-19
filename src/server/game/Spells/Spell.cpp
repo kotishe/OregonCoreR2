@@ -45,6 +45,8 @@
 #include "GameEventMgr.h"
 #include "DisableMgr.h"
 #include "ConditionMgr.h"
+#include "SpellScript.h"
+#include "ScriptMgr.h"
 
 #define SPELL_CHANNEL_UPDATE_INTERVAL (1*IN_MILLISECONDS)
 
@@ -360,6 +362,15 @@ Spell::Spell(Unit* Caster, SpellEntry const* info, bool triggered, uint64 origin
 
 Spell::~Spell()
 {
+    // unload scripts
+    while(!m_loadedScripts.empty())
+    {
+        std::list<SpellScript *>::iterator itr = m_loadedScripts.begin();
+        (*itr)->Unload();
+        delete (*itr);
+        m_loadedScripts.erase(itr);
+    }
+
     m_destroyed = true;
 
     delete m_spellValue;
@@ -2293,6 +2304,7 @@ void Spell::prepare(SpellCastTargets* targets, Aura* triggeredByAura)
         finish(false);
         return;
     }
+    LoadScripts();
 
     // Set cast time to 0 if .cheat casttime is enabled.
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
@@ -3693,6 +3705,16 @@ void Spell::HandleEffects(Unit* pUnitTarget, Item* pItemTarget, GameObject* pGOT
     uint8 eff = m_spellInfo->Effect[i];
 
     DEBUG_LOG("Spell: Effect : %u", eff);
+
+    for(std::list<SpellScript *>::iterator scritr = m_loadedScripts.begin(); scritr != m_loadedScripts.end() ; ++scritr)
+    {
+        std::list<SpellScript::EffectHandler>::iterator effEndItr = (*scritr)->EffectHandlers.end(), effItr = (*scritr)->EffectHandlers.begin();
+        for(; effItr != effEndItr ; ++effItr)
+        {
+            if ((*effItr).IsEffectAffected(m_spellInfo, i))
+                (*effItr).Call(*scritr, (SpellEffIndex)i);
+        }
+    }
 
     //we do not need DamageMultiplier here.
     damage = CalculateDamage(i, NULL);
@@ -6371,5 +6393,23 @@ void Spell::SetSpellValue(SpellValueMod mod, int32 value)
         m_spellValue->Duration = (uint32) value;
         m_spellValue->CustomDuration = true;
         break;
+    }
+}
+
+void Spell::LoadScripts()
+{
+    sLog.outError("Spell::LoadScripts");
+    sScriptMgr.CreateSpellScripts(m_spellInfo->Id, m_loadedScripts);
+    for(std::list<SpellScript *>::iterator itr = m_loadedScripts.begin(); itr != m_loadedScripts.end() ;)
+    {
+        if (!(*itr)->_Load(this))
+        {
+            std::list<SpellScript *>::iterator bitr = itr;
+            ++itr;
+            m_loadedScripts.erase(bitr);
+            continue;
+        }
+        (*itr)->Register();
+        ++itr;
     }
 }
