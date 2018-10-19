@@ -21,6 +21,7 @@
 #include "GridDefines.h"
 #include "SpellMgr.h"
 #include "SharedDefines.h"
+#include "ObjectMgr.h"
 
 static const uint32 MAX_SPELL_ID = 53085;
 
