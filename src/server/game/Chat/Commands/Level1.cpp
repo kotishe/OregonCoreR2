@@ -160,7 +160,9 @@ bool ChatHandler::HandleAnnounceCommand(const char* args)
     if (!*args)
         return false;
 
-    sWorld.SendWorldText(LANG_SYSTEMMESSAGE, args);
+    char buff[2048];
+    sprintf(buff, GetOregonString(LANG_SYSTEMMESSAGE), args);
+    sWorld.SendServerMessage(SERVER_MSG_STRING, buff);
     return true;
 }
 
