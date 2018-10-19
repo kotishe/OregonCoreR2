@@ -177,12 +177,19 @@ SpellEntry const * SpellScript::GetSpellInfo()
     return m_spell->GetSpellInfo();
 }
 
-Unit * SpellScript::GetEffectUnitTarget()
+WorldLocation * SpellScript::GetDest()
+{
+    if (m_spell->m_targets.HasDst())
+        return &m_spell->m_targets.m_dstPos;
+    return NULL;
+}
+
+Unit * SpellScript::GetHitUnit()
 {
     return m_spell->unitTarget; 
 }
 
-Creature * SpellScript::GetEffectCreatureTarget()
+Creature * SpellScript::GetHitCreature()
 {
     if (m_spell->unitTarget)
         return m_spell->unitTarget->ToCreature();
@@ -190,7 +197,7 @@ Creature * SpellScript::GetEffectCreatureTarget()
         return NULL;
 }
 
-Player * SpellScript::GetEffectPlayerTarget()
+Player * SpellScript::GetHitPlayer()
 {
     if (m_spell->unitTarget)
         return m_spell->unitTarget->ToPlayer();
@@ -198,12 +205,12 @@ Player * SpellScript::GetEffectPlayerTarget()
         return NULL;
 }
 
-Item * SpellScript::GetEffectItemTarget()
+Item * SpellScript::GetHitItem()
 {
     return m_spell->itemTarget;
 }
 
-GameObject * SpellScript::GetEffectGOTarget()
+GameObject * SpellScript::GetHitGObj()
 {
     return m_spell->gameObjTarget;
 }
@@ -211,4 +218,24 @@ GameObject * SpellScript::GetEffectGOTarget()
 int32 SpellScript::GetEffectValue()
 {
     return m_spell->damage;
+}
+
+int32 SpellScript::GetHitDamage()
+{
+    return m_spell->m_damage;
+}
+
+void SpellScript::SetHitDamage(int32 damage)
+{
+    m_spell->m_damage = damage;
+}
+
+int32 SpellScript::GetHitHeal()
+{
+    return m_spell->m_healing;
+}
+
+void SpellScript::SetHitHeal(int32 heal)
+{
+    m_spell->m_healing = heal;
 }

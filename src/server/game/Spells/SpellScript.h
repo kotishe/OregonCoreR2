@@ -29,6 +29,7 @@ class Creature;
 class GameObject;
 class Player;
 class Item;
+class WorldLocation;
 
 typedef void(SpellScript::*EffectHandlerFnType)(SpellEffIndex);
 
@@ -124,12 +125,22 @@ class SpellScript : public _SpellScript
         Unit * GetCaster();
         Unit * GetOriginalCaster();
         SpellEntry const * GetSpellInfo();
-        // functions useable only during spell hit on target phase
-        Unit * GetEffectUnitTarget();
-        Creature * GetEffectCreatureTarget();
-        Player * GetEffectPlayerTarget();
-        Item * GetEffectItemTarget();
-        GameObject * GetEffectGOTarget();
+
+        // methods useable after spell targets are set
+        // returns: destination of the spell if exists, otherwise NULL
+        WorldLocation * GetDest();
+        // methods useable only during spell hit on target phase:
+        Unit * GetHitUnit();
+        Creature * GetHitCreature();
+        Player * GetHitPlayer();
+        Item * GetHitItem();
+        GameObject * GetHitGObj();
+        int32 GetHitDamage();
+        void SetHitDamage(int32 damage);
+        int32 GetHitHeal();
+        void SetHitHeal(int32 heal);
+
+        // method avalible only in EffectHandler method
         int32 GetEffectValue();
 };
 // SpellScript interface
