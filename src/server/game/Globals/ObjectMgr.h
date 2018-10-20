@@ -1276,7 +1276,9 @@ class ObjectMgr
         OregonStringLocaleMap mOregonStringLocaleMap;
         GossipMenuItemsLocaleMap mGossipMenuItemsLocaleMap;
         RespawnTimes mCreatureRespawnTimes;
+        ACE_Thread_Mutex m_CreatureRespawnTimesMtx;
         RespawnTimes mGORespawnTimes;
+        ACE_Thread_Mutex m_GORespawnTimesMtx;
 
         typedef std::vector<uint32> GuildBankTabPriceMap;
         GuildBankTabPriceMap mGuildBankTabPrice;

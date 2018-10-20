@@ -6439,7 +6439,12 @@ void ObjectMgr::LoadWeatherZoneChances()
 
 void ObjectMgr::SaveCreatureRespawnTime(uint32 loguid, uint32 instance, time_t t)
 {
-    mCreatureRespawnTimes[MAKE_PAIR64(loguid, instance)] = t;
+    // This function can be Called from various map threads concurrently
+    {
+        ACE_GUARD(ACE_Thread_Mutex, guard, m_CreatureRespawnTimesMtx);
+        mCreatureRespawnTimes[MAKE_PAIR64(loguid,instance)] = t;
+    }
+
     WorldDatabase.PExecute("DELETE FROM creature_respawn WHERE guid = '%u' AND instance = '%u'", loguid, instance);
     if (t)
         WorldDatabase.PExecute("INSERT INTO creature_respawn VALUES ('%u', '" UI64FMTD "', '%u')", loguid, uint64(t), instance);
@@ -6457,7 +6462,12 @@ void ObjectMgr::DeleteCreatureData(uint32 guid)
 
 void ObjectMgr::SaveGORespawnTime(uint32 loguid, uint32 instance, time_t t)
 {
-    mGORespawnTimes[MAKE_PAIR64(loguid, instance)] = t;
+    // This function can be called from different map threads concurrently
+    {
+        ACE_GUARD(ACE_Thread_Mutex, guard, m_CreatureRespawnTimesMtx);
+        mGORespawnTimes[MAKE_PAIR64(loguid,instance)] = t;
+    }
+
     WorldDatabase.PExecute("DELETE FROM gameobject_respawn WHERE guid = '%u' AND instance = '%u'", loguid, instance);
     if (t)
         WorldDatabase.PExecute("INSERT INTO gameobject_respawn VALUES ('%u', '" UI64FMTD "', '%u')", loguid, uint64(t), instance);
@@ -6467,22 +6477,27 @@ void ObjectMgr::DeleteRespawnTimeForInstance(uint32 instance)
 {
     RespawnTimes::iterator next;
 
-    for (RespawnTimes::iterator itr = mGORespawnTimes.begin(); itr != mGORespawnTimes.end(); itr = next)
-    {
-        next = itr;
-        ++next;
-
-        if (GUID_HIPART(itr->first) == instance)
-            mGORespawnTimes.erase(itr);
+	{
+        ACE_GUARD(ACE_Thread_Mutex, guard, m_GORespawnTimesMtx);
+        for (RespawnTimes::iterator itr = mGORespawnTimes.begin(); itr != mGORespawnTimes.end(); itr = next)
+        {
+            next = itr;
+            ++next;
+            if (GUID_HIPART(itr->first) == instance)
+                mGORespawnTimes.erase(itr);
+        }
     }
 
-    for (RespawnTimes::iterator itr = mCreatureRespawnTimes.begin(); itr != mCreatureRespawnTimes.end(); itr = next)
     {
-        next = itr;
-        ++next;
+        ACE_GUARD(ACE_Thread_Mutex, guard, m_CreatureRespawnTimesMtx);
+        for (RespawnTimes::iterator itr = mCreatureRespawnTimes.begin(); itr != mCreatureRespawnTimes.end(); itr = next)
+        {
+            next = itr;
+            ++next;
 
-        if (GUID_HIPART(itr->first) == instance)
-            mCreatureRespawnTimes.erase(itr);
+            if (GUID_HIPART(itr->first) == instance)
+                mCreatureRespawnTimes.erase(itr);
+        }
     }
 
     WorldDatabase.PExecute("DELETE FROM creature_respawn WHERE instance = '%u'", instance);
