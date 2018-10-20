@@ -1109,7 +1109,8 @@ enum Targets
     TARGET_DEST_DEST                   = 87,
     TARGET_DEST_DYNOBJ_NONE            = 88,
     TARGET_DEST_TRAJ                   = 89,
-    TARGET_UNIT_TARGET_MINIPET         = 90,
+    TARGET_UNIT_TARGET_PUPPET          = 90,
+    TARGET_UNIT_SUMMONER               = 92,
     TARGET_CORPSE_AREA_ENEMY_PLAYER    = 93,
 };
 
