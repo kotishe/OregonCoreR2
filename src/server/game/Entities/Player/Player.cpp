@@ -6342,7 +6342,11 @@ void Player::UpdateZone(uint32 newZone)
 
     if (zone->flags & AREA_FLAG_CAPITAL)                     // in capital city
     {
-        SetRestFlag(REST_FLAG_IN_CITY);
+        if (!pvpInfo.inHostileArea || zone->flags & AREA_FLAG_SANCTUARY)
+        {
+            SetFlag(PLAYER_FLAGS, PLAYER_FLAGS_RESTING);
+            SetRestFlag(REST_FLAG_IN_CITY);
+        }
 
         pvpInfo.inNoPvPArea = true;
     }

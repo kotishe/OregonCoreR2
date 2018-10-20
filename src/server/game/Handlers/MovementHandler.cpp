@@ -182,6 +182,9 @@ void WorldSession::HandleMoveWorldportAckOpcode()
     // honorless target
     if (GetPlayer()->pvpInfo.inHostileArea)
         GetPlayer()->CastSpell(GetPlayer(), 2479, true);
+    // in friendly area
+    else if (GetPlayer()->IsPvP() && !GetPlayer()->HasFlag(PLAYER_FLAGS,PLAYER_FLAGS_IN_PVP))
+        GetPlayer()->UpdatePvP(false, false);
 
     // allow waterwalking for ghost players at map change
     if (GetPlayer()->GetCorpse())
@@ -238,6 +241,9 @@ void WorldSession::HandleMoveTeleportAck(WorldPacket& recv_data)
         // honorless target
         if (plMover->pvpInfo.inHostileArea)
             plMover->CastSpell(plMover, 2479, true);
+        // in friendly area
+        else if (plMover->IsPvP() && !plMover->HasFlag(PLAYER_FLAGS,PLAYER_FLAGS_IN_PVP))
+            plMover->UpdatePvP(false, false);
     }
 
     // resummon pet
