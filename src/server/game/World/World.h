@@ -789,7 +789,7 @@ class World
         uint32 m_ShutdownMask;
 
         //atomic op counter for active scripts amount
-        ACE_Atomic_Op<ACE_Thread_Mutex, long> m_scheduledScripts;
+        ACE_Atomic_Op<ACE_Thread_Mutex, int> m_scheduledScripts;
 
         time_t m_startTime;
         time_t m_gameTime;

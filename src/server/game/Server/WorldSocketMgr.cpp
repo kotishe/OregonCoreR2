@@ -189,7 +189,7 @@ class ReactorRunnable : protected ACE_Task_Base
         }
 
     private:
-        typedef ACE_Atomic_Op<ACE_SYNCH_MUTEX, long> AtomicInt;
+        typedef ACE_Atomic_Op<ACE_SYNCH_MUTEX, int> AtomicInt;
         typedef std::set<WorldSocket*> SocketSet;
 
         ACE_Reactor* m_Reactor;
