@@ -16,6 +16,7 @@ Build Status
 + Platform: Linux, Windows or Mac
 + Processor with SSE2 support
 + OpenSSL = 1.1.0
++ ACE = 6.3.3
 
 
 Community and Support
