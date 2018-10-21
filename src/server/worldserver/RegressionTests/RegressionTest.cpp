@@ -16,7 +16,7 @@
  */
 
 #include "Log.h"
-#include "../Master.h"
+#include "Master.h"
 #include "RegressionTest.h"
 
 bool AddRG_Misc();

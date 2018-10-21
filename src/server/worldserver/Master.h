@@ -19,8 +19,8 @@
 #define _MASTER_H
 
 #include "Common.h"
-#include "Policies/Singleton.h"
-#include "RegressionTests/RegressionTest.h"
+#include "Singleton.h"
+#include "RegressionTest.h"
 
 // Start the server
 class Master

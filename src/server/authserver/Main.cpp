@@ -24,14 +24,14 @@
 */
 
 #include "Common.h"
-#include "Database/DatabaseEnv.h"
+#include "DatabaseEnv.h"
 #include "RealmList.h"
 
 #include "Config.h"
 #include "Log.h"
 #include "AuthSocket.h"
 #include "SystemConfig.h"
-#include "Utilities/Util.h"
+#include "Util.h"
 
 #include <ace/Get_Opt.h>
 #include <ace/Dev_Poll_Reactor.h>
