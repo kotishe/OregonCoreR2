@@ -4669,7 +4669,7 @@ void Aura::HandleModTotalPercentStat(bool apply, bool /*Real*/)
 
     //recalculate current HP/MP after applying aura modifications (only for spells with 0x10 flag)
     if ((m_modifier.m_miscvalue == STAT_STAMINA) && (m_spellProto->Attributes & SPELL_ATTR0_ABILITY))
-        m_target->SetHealth(std::max<uint32>(uint32(healthPct * m_target->GetMaxHealth() * 0.01f), (alive ? 1 : 0)));
+        m_target->SetHealth(std::max<uint32>(uint64(healthPct * m_target->GetMaxHealth() * 0.01f), (alive ? 1 : 0)));
 }
 
 void Aura::HandleAuraModResistenceOfStatPercent(bool /*apply*/, bool /*Real*/)

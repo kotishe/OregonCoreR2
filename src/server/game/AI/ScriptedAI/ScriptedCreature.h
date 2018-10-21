@@ -183,7 +183,7 @@ struct ScriptedAI : public CreatureAI
         //Selects a unit from the creature's current aggro list
         Unit* SelectUnit(SelectAggroTarget pTarget, uint32 uiPosition);
 
-        bool HealthBelowPct(uint32 pct) const { return me->HealthBelowPct(pct); }
+        bool HealthBelowPct(uint64 pct) const { return me->HealthBelowPct(pct); }
         bool HealthAbovePct(uint32 pct) const { return me->HealthAbovePct(pct); }
 
         //Returns spells that meet the specified criteria from the creatures spell list
