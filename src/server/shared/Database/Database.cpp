@@ -29,6 +29,7 @@
 #include "SqlOperations.h"
 #include "Timer.h"
 
+#include <sys/file.h>
 #include <ctime>
 #include <iostream>
 #include <fstream>

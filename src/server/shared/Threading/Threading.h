@@ -43,7 +43,7 @@ class Runnable
                 delete this;
         }
     private:
-        ACE_Atomic_Op<ACE_Thread_Mutex, long> m_refs;
+        ACE_Atomic_Op<ACE_Thread_Mutex, int> m_refs;
 };
 
 enum Priority
