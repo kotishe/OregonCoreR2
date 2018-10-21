@@ -16,7 +16,7 @@
  */
 
 #include "DatabaseEnv.h"
-#include "Configuration/Config.h"
+#include "Config.h"
 
 #include "Common.h"
 #include "UpdateFields.h"
@@ -32,9 +32,6 @@
 #include <ctime>
 #include <iostream>
 #include <fstream>
-#if PLATFORM == PLATFORM_UNIX
-#include <sys/file.h>
-#endif
 
 static const my_bool my_true = 1;
 

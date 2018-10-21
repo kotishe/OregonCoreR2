@@ -3,7 +3,7 @@
 #define OREGON_CONSOLE_H
 
 #include "Common.h"
-#include "Policies/Singleton.h"
+#include "Singleton.h"
 #include <curses.h>
 
 typedef WINDOW Window;

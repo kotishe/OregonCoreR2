@@ -20,13 +20,15 @@
 
 #include "Threading.h"
 #include "UnorderedMap.h"
-#include "Database/SqlDelayThread.h"
-#include "Policies/Singleton.h"
-#include "ace/Thread_Mutex.h"
-#include "ace/Guard_T.h"
+#include "SqlDelayThread.h"
+#include "Singleton.h"
 #include "ace/Atomic_Op.h"
 #include "PreparedStatement.h"
 #include "QueryResult.h"
+
+#include <ace/Atomic_Op.h>
+#include <ace/Thread_Mutex.h>
+#include <ace/Guard_T.h>
 
 #ifdef WIN32
 #define FD_SETSIZE 1024

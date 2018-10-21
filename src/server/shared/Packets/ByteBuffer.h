@@ -21,7 +21,7 @@
 #include "Common.h"
 #include "Errors.h"
 #include "Log.h"
-#include "Utilities/ByteConverter.h"
+#include "ByteConverter.h"
 
 class ByteBufferException
 {

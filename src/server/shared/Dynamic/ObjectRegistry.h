@@ -20,7 +20,7 @@
 
 #include "Define.h"
 #include "UnorderedMap.h"
-#include "Policies/Singleton.h"
+#include "Singleton.h"
 
 #include <string>
 #include <vector>

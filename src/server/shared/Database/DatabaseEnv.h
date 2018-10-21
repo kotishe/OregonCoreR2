@@ -21,11 +21,10 @@
 #include "Common.h"
 #include "Log.h"
 #include "Errors.h"
+#include "Field.h"
+#include "QueryResult.h"
+#include "Database.h"
 
-#include "Database/Field.h"
-#include "Database/QueryResult.h"
-
-#include "Database/Database.h"
 typedef Database DatabaseType;
 #define _LIKE_           "LIKE"
 #define _TABLE_SIM_      "`"

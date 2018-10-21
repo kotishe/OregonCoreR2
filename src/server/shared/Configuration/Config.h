@@ -22,6 +22,8 @@
 #include "Singleton.h"
 #include "Define.h"
 
+#include <string>
+
 class ACE_Configuration_Heap;
 
 class Config

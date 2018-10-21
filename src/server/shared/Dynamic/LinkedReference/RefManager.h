@@ -19,7 +19,7 @@
 #define _REFMANAGER_H
 
 #include "LinkedList.h"
-#include "LinkedReference/Reference.h"
+#include "Reference.h"
 
 template <class TO, class FROM> class RefManager : public LinkedListHead
 {

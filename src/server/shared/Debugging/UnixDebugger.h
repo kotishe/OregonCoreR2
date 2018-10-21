@@ -20,7 +20,7 @@
 #define _UNIX_DEBUGGER_H_
 
 #include "Common.h"
-#include "Policies/Singleton.h"
+#include "Singleton.h"
 
 // bfd.h requires PACKAGE to be defined
 #ifndef PACKAGE

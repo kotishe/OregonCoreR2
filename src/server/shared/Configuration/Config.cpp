@@ -16,8 +16,9 @@
  */
 
 #include "Config.h"
-#include "ace/Configuration_Import_Export.h"
-#include "ace/Guard_T.h"
+#include <ace/Auto_Ptr.h>
+#include <ace/Configuration_Import_Export.h>
+#include <ace/Thread_Mutex.h>
 
 INSTANTIATE_SINGLETON_1(Config);
 

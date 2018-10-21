@@ -19,14 +19,14 @@
 #define __SQLOPERATIONS_H
 
 #include "Common.h"
-
-#include "ace/Thread_Mutex.h"
-#include "ace/Method_Request.h"
 #include "LockedQueue.h"
-#include <queue>
 #include "Callback.h"
 #include "QueryResult.h"
 #include "Database.h"
+
+#include <queue>
+#include <ace/Thread_Mutex.h>
+#include <ace/Method_Request.h>
 
 // BASE
 

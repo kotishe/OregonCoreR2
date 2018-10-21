@@ -19,8 +19,8 @@
 #define OREGONCORE_LOG_H
 
 #include "Common.h"
-#include "Policies/Singleton.h"
-#include "Database/DatabaseEnv.h"
+#include "Singleton.h"
+#include "DatabaseEnv.h"
 
 class Config;
 
