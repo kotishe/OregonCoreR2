@@ -925,6 +925,9 @@ uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDam
     if (victim->IsAIEnabled)
         victim->ToCreature()->AI()->DamageTaken(this, damage);
 
+    if (GetTypeId() == TYPEID_UNIT && this->ToCreature()->IsAIEnabled)
+        this->ToCreature()->AI()->DamageDealt(victim, damage, damagetype);
+
     // Signal to pet that it dealt damage
     if (IsPet() && this != victim && victim->IsAlive())
         ToPet()->AI()->DamageDealt(victim, damage, damagetype);

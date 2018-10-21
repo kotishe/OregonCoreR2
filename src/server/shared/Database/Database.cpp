@@ -29,7 +29,10 @@
 #include "SqlOperations.h"
 #include "Timer.h"
 
+#if PLATFORM == PLATFORM_UNIX
 #include <sys/file.h>
+#endif
+
 #include <ctime>
 #include <iostream>
 #include <fstream>

@@ -182,7 +182,7 @@ struct boss_janalaiAI : public ScriptedAI
         DoZoneInCombat();
     }
 
-    void DamageDeal(Unit* pTarget, uint32& damage)
+    void DamageDealt(Unit* pTarget, uint32& damage)
     {
         if (isFlameBreathing)
         {
