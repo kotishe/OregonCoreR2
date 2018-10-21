@@ -22,7 +22,7 @@
 #include <vector>
 
 #if PLATFORM == PLATFORM_UNIX
-#include "Debugging/UnixDebugger.h"
+#include "UnixDebugger.h"
 #endif
 
 using namespace ACE_Based;

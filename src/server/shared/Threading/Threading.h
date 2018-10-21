@@ -21,7 +21,7 @@
 #include <set>
 #include <ace/Thread.h>
 #include <ace/TSS_T.h>
-#include "ace/Atomic_Op.h"
+#include <ace/Atomic_Op.h>
 #include <assert.h>
 
 namespace ACE_Based

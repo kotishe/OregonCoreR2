@@ -18,7 +18,8 @@ file(GLOB_RECURSE sources_localdir *.cpp *.h)
 if( USE_COREPCH )
   include_directories(${CMAKE_CURRENT_BINARY_DIR})
 endif()
- if ( USE_COREPCH AND MSVC )
+
+if ( USE_COREPCH AND MSVC )
   set(worldserver_SRCS
     PrecompiledHeaders/worldPCH.cpp
     PrecompiledHeaders/worldPCH.h
@@ -31,13 +32,13 @@ set(worldserver_SRCS
   ${sources_OCSoap}
   ${sources_WorldThread}
   ${sources_RegressionTests}
+  ${sources_Debugging}
   ${sources_localdir}
 )
 
 if( WIN32 )
   set(worldserver_SRCS
     ${worldserver_SRCS}
-    ${sources_Debugging}
     OregonCore.rc
   )
 endif()

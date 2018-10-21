@@ -28,6 +28,7 @@ set(authserver_SRCS
   ${sources_authentication}
   ${sources_realms}
   ${sources_server}
+  ${sources_Debugging}
   ${sources_localdir}
 )
 
@@ -40,6 +41,7 @@ endif()
 
 include_directories(
   ${CMAKE_BINARY_DIR}
+  ${CMAKE_SOURCE_DIR}/dep/g3dlite/include
   ${CMAKE_SOURCE_DIR}/src/server/shared
   ${CMAKE_SOURCE_DIR}/src/server/shared/Configuration
   ${CMAKE_SOURCE_DIR}/src/server/shared/Database
@@ -81,29 +83,25 @@ if( UNIX )
   set(authserver_LINK_FLAGS "-pthread ${authserver_LINK_FLAGS}")
 endif()
 
-if( CMAKE_SYSTEM_NAME MATCHES "Darwin" )
-  set(authserver_LINK_FLAGS "-framework Carbon ${authserver_LINK_FLAGS}")
-endif()
-
 set_target_properties(authserver PROPERTIES LINK_FLAGS "${authserver_LINK_FLAGS}")
 
-if( WIN32 )
-  target_link_libraries(
-    authserver
+target_link_libraries(authserver
     shared
+    g3dlib
     ${MYSQL_LIBRARY}
     ${OPENSSL_LIBRARIES}
     ${OPENSSL_EXTRA_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
-  )
-else()
-  target_link_libraries(
-    authserver
-    shared
-    ${MYSQL_LIBRARY}
-    ${OPENSSL_LIBRARIES}
-	${CMAKE_THREAD_LIBS_INIT}
-    ${OSX_LIBS}
+	${ACE_LIBRARY}
+)
+
+if( UNIX )
+  target_link_libraries(authserver
+    ${BFD_LIBRARY}
+    dl
+    ${IBERTY_LIBRARY}
+    rt
+    ${ZLIB_LIBRARIES}
   )
 endif()
 
