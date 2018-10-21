@@ -197,7 +197,7 @@ endif()
 
 if( UNIX )
   install(TARGETS worldserver DESTINATION bin)
-  install(FILES worldserver.conf.dist DESTINATION ${CONF_DIR})
+  install(FILES oregoncore.conf.dist DESTINATION ${CONF_DIR})
 elseif( WIN32 )
   install(TARGETS worldserver DESTINATION "${CMAKE_INSTALL_PREFIX}")
   install(FILES oregoncore.conf.dist DESTINATION "${CMAKE_INSTALL_PREFIX}")
