@@ -42,6 +42,6 @@ install:
   mkdir build
   mkdir install
   cd build
-  - cmake .. -DCMAKE_INSTALL_PREFIX=install -DSERVERS=1 -DTOOLS=0 -DSCRIPTS=1 -DWITH_DOCS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
+  - cmake .. -DCMAKE_INSTALL_PREFIX=../install -DSERVERS=1 -DTOOLS=0 -DSCRIPTS=1 -DWITH_DOCS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
   - make -j 2
   - make install
