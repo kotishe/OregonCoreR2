@@ -9,29 +9,23 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - kubuntu-backports
     packages:
       - cmake
-      - build-essential
       - cppcheck
       - git
-      - make
       - openssl
-      - binutils-dev
-      - binutils
       - libssl-dev
       - libmysqlclient-dev
       - libreadline6-dev
       - zlib1g-dev
-      - zip
       - unzip
 
 git:
   depth: 1
       
 before_install:
-  - sudo apt-get -qq install libace-dev
-  - export PATH=/usr/lib/binutils-2.24/bin:${PATH}
+  - sudo apt-get -qq install libace-dev binutils-2.26-dev
+  - export PATH=/usr/lib/binutils-2.26/bin:${PATH}
 
 install:
   - mkdir build
