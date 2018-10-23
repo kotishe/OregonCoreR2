@@ -1,4 +1,5 @@
-dist: precise
+sudo: false
+dist: trusty
 language: cpp
 
 compiler:
@@ -29,6 +30,7 @@ git:
       
 before_install:
   - sudo apt-get -qq install libace-dev
+  - export PATH=/usr/lib/binutils-2.26/bin:${PATH}
 
 install:
   - mkdir build
