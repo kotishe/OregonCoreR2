@@ -87,9 +87,6 @@ endif()
 # Find revision ID and hash of the sourcetree
 include(cmake/genrev.cmake)
 
-# doxygen support
-include(cmake/doxygen.cmake)
-
 # print out the results before continuing
 include(cmake/showoptions.cmake)
 
