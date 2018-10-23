@@ -3,20 +3,9 @@ language: cpp
 compiler:
   - clang
 
-git:
-  depth: 1
-
-sudo: false
-
-os:
-  - linux
-
+# whitelisted packages can be obtained quickly without downloading
 
 addons:
-  apt:
-    sources:
-      - kubuntu-backports
-      - ubuntu-toolchain-r-test
   apt:
     packages:
       - cmake
@@ -24,14 +13,15 @@ addons:
       - cppcheck
       - git
       - make
+      - binutils-dev
       - openssl
       - libssl-dev
-      - binutils-dev
       - zlib1g-dev
       - zip
       - unzip
-      - php5-cli
-      - php5-mysql
+
+git:
+  depth: 1
       
 before_install:
   - sudo apt-get -qq install libace-dev
@@ -40,5 +30,4 @@ install:
   - mkdir build
   - cd build
   - cmake .. -DSERVERS=1 -DTOOLS=1 -DSCRIPTS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
-# we have 1.5 cpu so 2 jobs at a time are sufficient
   - make -j2
