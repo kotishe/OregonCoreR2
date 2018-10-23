@@ -1,14 +1,14 @@
 sudo: false
-dist: xenial
+dist: trusty
 language: cpp
 
 compiler:
   - clang
 
 addons:
-  mysql: '5.6'
   apt:
     packages:
+      - g++-6
       - cmake
       - build-essential
       - cppcheck
@@ -16,6 +16,8 @@ addons:
       - make
       - openssl
       - libssl-dev
+      - libmysqlclient-dev
+      - libreadline6-dev
       - zlib1g-dev
       - zip
       - unzip
@@ -24,9 +26,7 @@ git:
   depth: 1
       
 before_install:
-  - sudo apt-get -qq update
-  - sleep 10
-  - sudo apt-get -qq install libace-dev binutils-dev
+  - sudo apt-get -qq install libace-dev
 
 install:
   - mkdir build
