@@ -33,4 +33,4 @@ install:
   - cd build
   - cmake ../ -DSERVERS=1 -DTOOLS=0 -DSCRIPTS=1 -DWITH_DOCS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
 # we have 1.5 cpu so 2 jobs at a time are sufficient
-  - make -j 4 -k && make install
+  - make -j8
