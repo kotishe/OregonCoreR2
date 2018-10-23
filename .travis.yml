@@ -18,6 +18,7 @@ addons:
       - make
       - openssl
       - binutils-dev
+      - binutils
       - libssl-dev
       - libmysqlclient-dev
       - libreadline6-dev
@@ -30,7 +31,7 @@ git:
       
 before_install:
   - sudo apt-get -qq install libace-dev
-  - export PATH=/usr/lib/binutils-2.26/bin:${PATH}
+  - export PATH=/usr/lib/binutils-2.24/bin:${PATH}
 
 install:
   - mkdir build
