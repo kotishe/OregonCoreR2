@@ -39,10 +39,10 @@ before_install:
   - sudo apt-get -qq install libace-dev
 
 install:
-  mkdir _build
-  mkdir _install
+  mkdir build
+  mkdir install
   cd _build
-  - cmake -DCMAKE_INSTALL_PREFIX=../_install -DSERVERS=1 -DTOOLS=0 -DSCRIPTS=1 -DWITH_DOCS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
+  - cmake../ -DCMAKE_INSTALL_PREFIX=install -DSERVERS=1 -DTOOLS=0 -DSCRIPTS=1 -DWITH_DOCS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
   - make -j8
   - make install
   
