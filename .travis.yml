@@ -1,5 +1,5 @@
 sudo: false
-dist: trusty
+dist: xenial
 language: cpp
 
 compiler:
@@ -14,7 +14,6 @@ addons:
       - cppcheck
       - git
       - make
-      - binutils-dev
       - openssl
       - libssl-dev
       - zlib1g-dev
@@ -27,7 +26,7 @@ git:
 before_install:
   - sudo apt-get -qq update
   - sleep 10
-  - sudo apt-get -qq install libace-dev
+  - sudo apt-get -qq install libace-dev binutils-dev
 
 install:
   - mkdir build
