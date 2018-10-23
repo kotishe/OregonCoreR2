@@ -1,5 +1,4 @@
-sudo: false
-dist: trusty
+dist: precise
 language: cpp
 
 compiler:
@@ -35,4 +34,6 @@ install:
   - mkdir build
   - cd build
   - cmake .. -DSERVERS=1 -DTOOLS=1 -DSCRIPTS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
+
+script:
   - make -j 4 -k
