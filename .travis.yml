@@ -1,11 +1,12 @@
-dist: precise
+sudo: false
+dist: trusty
 language: cpp
+
 compiler:
   - clang
 
-# whitelisted packages can be obtained quickly without downloading
-
 addons:
+  mariadb: '10.0'
   apt:
     packages:
       - cmake
