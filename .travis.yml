@@ -1,0 +1,47 @@
+language: cpp
+
+git:
+  depth: 1
+
+sudo: false
+
+dist: trusty
+
+os:
+  - linux
+
+compiler:
+  - clang
+ 
+
+addons:
+  apt:
+    sources:
+      - kubuntu-backports
+      - ubuntu-toolchain-r-test
+  apt:
+    packages:
+      - cmake
+      - build-essential
+      - cppcheck
+      - git
+      - make
+      - binutils-dev
+      - openssl
+      - libssl-dev
+      - zlib1g-dev
+      - zip
+      - unzip
+      - php5-cli
+      - php5-mysql
+      
+before_install:
+  - sudo apt-get -qq install libace-dev
+
+install:
+  mkdir build
+  mkdir install
+  cd build
+  - cmake .. -DCMAKE_INSTALL_PREFIX=install -DSERVERS=1 -DTOOLS=0 -DSCRIPTS=1 -DWITH_DOCS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
+  - make -j 2
+  - make install
