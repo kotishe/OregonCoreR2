@@ -7,14 +7,17 @@ compiler:
 
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - kubuntu-backports
     packages:
-      - g++-6
       - cmake
       - build-essential
       - cppcheck
       - git
       - make
       - openssl
+      - binutils-dev
       - libssl-dev
       - libmysqlclient-dev
       - libreadline6-dev
@@ -32,4 +35,4 @@ install:
   - mkdir build
   - cd build
   - cmake .. -DSERVERS=1 -DTOOLS=1 -DSCRIPTS=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0
-  - make -j2
+  - make -j 4 -k
