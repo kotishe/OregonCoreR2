@@ -1,18 +1,16 @@
+dist: precise
 language: cpp
+compiler:
+  - clang
 
 git:
   depth: 1
 
 sudo: false
 
-dist: trusty
-
 os:
   - linux
 
-compiler:
-  - clang
- 
 
 addons:
   apt:
@@ -28,6 +26,7 @@ addons:
       - make
       - openssl
       - libssl-dev
+      - binutils-dev
       - zlib1g-dev
       - zip
       - unzip
@@ -35,7 +34,7 @@ addons:
       - php5-mysql
       
 before_install:
-  - sudo apt-get -qq install libace-dev binutils-dev
+  - sudo apt-get -qq install libace-dev
 
 install:
   - mkdir build
