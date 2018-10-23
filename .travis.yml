@@ -26,7 +26,6 @@ addons:
       - cppcheck
       - git
       - make
-      - binutils-dev
       - openssl
       - libssl-dev
       - zlib1g-dev
@@ -36,7 +35,7 @@ addons:
       - php5-mysql
       
 before_install:
-  - sudo apt-get -qq install libace-dev
+  - sudo apt-get -qq install libace-dev binutils-dev
 
 install:
   - mkdir build
